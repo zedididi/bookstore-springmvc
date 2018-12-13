@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.ncu.bookstore.dao.UserDao">
+    <resultMap id="result_map" type="cn.edu.ncu.bookstore.entity.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="cellphone" property="cellphone"/>
+        <result column="email" property="email"/>
+        <result column="address" property="address"/>
+     </resultMap>
+    <select id="findAll" resultMap="result_map">
+        SELECT  id,username,password,phone,cellphone,email,address
+        from user
+    </select>
+    <select id="findById" resultMap="result_map">
+       SELECT  id,username,password,phone,cellphone,email,address
+       from user
+       where id=#{id,jdbcType=INTEGER}
+    </select>
+    <select id="findByUsername" resultMap="result_map">
+       SELECT  id,username,password,phone,cellphone,email,address
+       from user
+       where username=#{username,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id" parameterType="cn.edu.ncu.bookstore.entity.User">
+        insert into user(username,password,phone,cellphone,email,address)
+        values (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{cellphone,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateUser" parameterType="cn.edu.ncu.bookstore.entity.User">
+        update user set username=#{username,jdbcType=VARCHAR},password=#{password,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR},cellphone=#{cellphone,jdbcType=VARCHAR},email=#{email,jdbcType=VARCHAR},address=#{address,jdbcType=VARCHAR}
+        where id=#{id}
+    </update>
+</mapper>
