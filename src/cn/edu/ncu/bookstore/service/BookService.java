@@ -17,7 +17,6 @@ import java.util.List;
 public class BookService {
     @Autowired
     private BookDao bookDao;
-
     public List<Book> findBookByCategoryId(String id){
         return bookDao.findBookByCategoryId(id);
 

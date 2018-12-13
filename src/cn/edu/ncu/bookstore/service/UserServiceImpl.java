@@ -19,22 +19,24 @@ public class UserServiceImpl implements UserService{
     private UserDao userDao;
 
     @Override
-    public List<User> findAll(){
+    public List<User> findAll(){  //查找所有用户
         return userDao.findAll();
     }
 
     @Override
-    public User findById(int id){
+    public User findById(int id){ //按id查找
+
         return userDao.findById(id);
     }
 
     @Override
-    public User findByUsername(String username){
+    public User findByUsername(String username){//按username 用户名查找
+
         return userDao.findByUsername(username);
     }
 
     @Override
-    public boolean login(User user) {
+    public boolean login(User user) {      //登陆逻辑实现
         User getUser=findByUsername(user.getUsername());
 
         if (getUser==null)
@@ -46,7 +48,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean register(User user) {    //可以充当addUser()
+    public boolean register(User user) {    //注册逻辑实现  可以充当addUser()
 
         User getUser=findByUsername(user.getUsername());
         if (getUser==null||!getUser.getPassword().equals(user.getPassword()))
@@ -56,7 +58,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean updateUser(User user) {
+    public boolean updateUser(User user) { //更新用户信息
         if (userDao.updateUser(user)>0)
             return true;
         return false;

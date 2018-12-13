@@ -34,7 +34,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value="/view1")
-    @ResponseBody
+    @ResponseBody             //返回json数据
     public List<Category> viewCategory1(){
         List<Category> list=categoryService.findAll();
         return list;

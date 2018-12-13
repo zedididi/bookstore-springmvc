@@ -49,7 +49,7 @@ public class BookController {
     }
 
     @RequestMapping("")
-    @ResponseBody
+    @ResponseBody            //返回json数据
     public List<Book> showBookByCategoryId(@RequestParam("id")String id, Model model){
         List<Book> list=bookService.findBookByCategoryId(id);
         model.addAttribute("books",list);
